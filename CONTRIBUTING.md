@@ -1,0 +1,142 @@
+# Sistema de Gestión Integral - Óptica Visual Km 30
+
+[![Python](https://img.shields.io/badge/Python-3.11%2B-blue)](https://python.org)
+[![Django](https://img.shields.io/badge/Django-4.2-green)](https://djangoproject.com)
+[![PostgreSQL](https://img.shields.io/badge/PostgreSQL-15%2B-blue)](https://postgresql.org)
+[![React](https://img.shields.io/badge/React-18%2B-blue)](https://reactjs.org)
+
+Sistema integral de gestión empresarial para digitalizar y optimizar todos los procesos de Óptica Visual Km 30.
+
+## Características Principales
+
+- **Gestión de Pacientes**: Registro completo con historiales médicos
+- **Prescripciones Oftalmológicas**: Control de fórmulas y medidas
+- **Sistema de Facturación**: Generación automática y control de pagos
+- **Gestión de Inventario**: Control de stock y productos
+- **Control de Créditos**: Seguimiento de cuentas por cobrar
+- **Marketing Digital**: Herramientas de campañas y seguimiento
+- **Reportería Avanzada**: Dashboard e informes gerenciales
+
+## Tecnologías Utilizadas
+
+### Backend
+- Python 3.11+
+- Django 4.2 + Django REST Framework
+- PostgreSQL 15+
+- Celery para tareas asíncronas
+
+### Frontend
+- React 18+ con TypeScript
+- Material-UI para componentes
+- Redux Toolkit para manejo de estado
+
+### DevOps
+- Docker para containerización
+- Nginx como proxy reverso
+- Git para control de versiones
+
+## Estructura del Proyecto
+
+```
+optica-visual-km30/
+├── docs/                  # Documentación técnica
+├── src/
+│   ├── backend/          # API REST con Django
+│   ├── frontend/         # Aplicación React
+│   └── database/         # Scripts y migraciones
+├── tests/                # Pruebas automatizadas
+├── deployment/           # Configuración de despliegue
+└── requirements/         # Dependencias Python
+```
+
+## Instalación Rápida
+
+### Prerrequisitos
+- Python 3.11+
+- Node.js 18+
+- PostgreSQL 15+
+- Git
+
+### Configuración del Proyecto
+
+1. **Clonar el repositorio**
+```bash
+git clone https://github.com/tuusuario/optica-visual-km30.git
+cd optica-visual-km30
+```
+
+2. **Configurar Backend**
+```bash
+# Crear y activar entorno virtual
+python -m venv venv
+venv\Scripts\activate  # Windows
+# source venv/bin/activate  # Linux/Mac
+
+# Instalar dependencias
+pip install -r requirements/development.txt
+
+# Configurar variables de entorno
+copy .env.example .env
+# Editar .env con tus configuraciones
+```
+
+3. **Configurar Base de Datos**
+```bash
+# Crear base de datos PostgreSQL
+createdb optica_visual_km30
+
+# Ejecutar migraciones
+cd src/backend
+python manage.py makemigrations
+python manage.py migrate
+
+# Crear superusuario
+python manage.py createsuperuser
+```
+
+4. **Iniciar Servidor de Desarrollo**
+```bash
+python manage.py runserver
+```
+
+### Configuración Frontend (Próximamente)
+```bash
+cd src/frontend
+npm install
+npm run dev
+```
+
+## Documentación
+
+- [Especificación Técnica](docs/especificacion-tecnica.md)
+- [Manual de Instalación](docs/instalacion.md)
+- [Diagramas UML](docs/diagramas/)
+- [API Documentation](docs/api.md)
+
+## Contribuciones
+
+Este proyecto está siendo desarrollado por:
+- **Juana** - Product Owner & Frontend Developer
+- **Equipo Técnico** - Backend & Architecture
+
+## Estado del Proyecto
+
+🚧 **En Desarrollo Activo**
+
+### Progreso Actual
+- [x] Análisis y documentación inicial
+- [x] Arquitectura del sistema
+- [ ] Desarrollo del backend
+- [ ] Desarrollo del frontend
+- [ ] Testing e integración
+- [ ] Deployment
+
+## Licencia
+
+Proyecto privado para Óptica Visual Km 30.
+
+## Contacto
+
+- **Empresa**: Óptica Visual Km 30
+- **Ubicación**: Km 30 Vía Principal
+- **Teléfono**: 300-123-4567
