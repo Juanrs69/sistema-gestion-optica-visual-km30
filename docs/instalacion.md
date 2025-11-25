@@ -33,17 +33,32 @@ cp .env.example .env
 # Editar .env con tus configuraciones
 ```
 
-#### 3. Configurar Base de Datos
+#### 3. Configurar Base de Datos PostgreSQL
 ```bash
-# Crear base de datos PostgreSQL
-createdb optica_visual_km30
+# Instalar PostgreSQL (Ubuntu/Debian)
+sudo apt install postgresql postgresql-contrib libpq-dev
+
+# Crear base de datos y usuario
+sudo -u postgres psql -c "CREATE DATABASE optica_visual_km30;"
+sudo -u postgres psql -c "CREATE USER optica_user WITH PASSWORD 'optica2025';"
+sudo -u postgres psql -c "GRANT ALL PRIVILEGES ON DATABASE optica_visual_km30 TO optica_user;"
+sudo -u postgres psql -c "ALTER DATABASE optica_visual_km30 OWNER TO optica_user;"
 
 # Ejecutar migraciones
+cd src/backend
 python manage.py makemigrations
 python manage.py migrate
 
 # Crear superusuario
 python manage.py createsuperuser
+```
+
+#### 3.1. Setup Automático (Recomendado)
+```bash
+# Ejecutar script de configuración automática
+cd src/backend
+chmod +x setup.sh
+./setup.sh
 ```
 
 #### 4. Configurar Frontend (React)

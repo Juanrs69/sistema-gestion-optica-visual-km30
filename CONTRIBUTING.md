@@ -65,29 +65,36 @@ git clone https://github.com/tuusuario/optica-visual-km30.git
 cd optica-visual-km30
 ```
 
-2. **Configurar Backend**
+2. **Setup Automático (Recomendado)**
 ```bash
+cd src/backend
+chmod +x setup.sh
+./setup.sh
+```
+
+3. **Setup Manual (si prefieres control total)**
+```bash
+# Instalar PostgreSQL
+sudo apt install postgresql postgresql-contrib libpq-dev
+
 # Crear y activar entorno virtual
-python -m venv venv
-venv\Scripts\activate  # Windows
-# source venv/bin/activate  # Linux/Mac
+python -m venv .venv
+source .venv/bin/activate  # Linux/Mac
 
 # Instalar dependencias
 pip install -r requirements/development.txt
 
-# Configurar variables de entorno
-copy .env.example .env
-# Editar .env con tus configuraciones
-```
+# Configurar PostgreSQL
+sudo -u postgres psql -c "CREATE DATABASE optica_visual_km30;"
+sudo -u postgres psql -c "CREATE USER optica_user WITH PASSWORD 'optica2025';"
+sudo -u postgres psql -c "GRANT ALL PRIVILEGES ON DATABASE optica_visual_km30 TO optica_user;"
 
-3. **Configurar Base de Datos**
-```bash
-# Crear base de datos PostgreSQL
-createdb optica_visual_km30
+# Configurar variables de entorno
+cd src/backend
+cp ../../.env.example .env
+# Editar .env con DATABASE_URL=postgresql://optica_user:optica2025@localhost:5432/optica_visual_km30
 
 # Ejecutar migraciones
-cd src/backend
-python manage.py makemigrations
 python manage.py migrate
 
 # Crear superusuario
@@ -96,8 +103,14 @@ python manage.py createsuperuser
 
 4. **Iniciar Servidor de Desarrollo**
 ```bash
-python manage.py runserver
+cd src/backend
+python manage.py runserver 0.0.0.0:8000
 ```
+
+### URLs Disponibles después del setup
+- **Admin Django**: http://localhost:8000/admin/ (admin/admin123)
+- **API Pacientes**: http://localhost:8000/api/pacientes/
+- **API Root**: http://localhost:8000/api/
 
 ### Configuración Frontend (Próximamente)
 ```bash
