@@ -37,10 +37,10 @@ THIRD_PARTY_APPS = [
 
 LOCAL_APPS = [
     'apps.pacientes',
+    'apps.prescripciones',
     # 'apps.productos',
     # 'apps.facturacion',
     # 'apps.creditos',
-    # 'apps.prescripciones',
     # 'apps.marketing',
     # 'apps.reportes',
 ]
@@ -88,6 +88,17 @@ DATABASES = {
     )
 }
 
+# Configuración especial para pruebas - usar SQLite en memoria
+import sys
+if 'test' in sys.argv or 'pytest' in sys.modules:
+    DATABASES['default'] = {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': ':memory:',
+        'OPTIONS': {
+            'timeout': 20,
+        }
+    }
+
 # Password validation
 AUTH_PASSWORD_VALIDATORS = [
     {
@@ -130,6 +141,7 @@ REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
         'rest_framework_simplejwt.authentication.JWTAuthentication',
         'rest_framework.authentication.SessionAuthentication',
+        'rest_framework.authentication.BasicAuthentication',
     ],
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.IsAuthenticated',
