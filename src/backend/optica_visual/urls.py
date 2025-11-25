@@ -13,6 +13,7 @@ urlpatterns = [
     # APIs de las aplicaciones
     path('', include('apps.pacientes.urls')),
     path('', include('apps.prescripciones.urls')),
+    path('', include('apps.productos.urls')),
     
     # API de autenticación (JWT)
     path('api/auth/', include('rest_framework.urls')),
